@@ -1,22 +1,22 @@
 public abstract class ConcretePiece implements Piece {
 
-    private ConcretePlayer piece_owner;
+    protected Player piece_owner;
     private Position piece_position;
 
 
-public ConcretePiece(){
-}
+    ConcretePiece() {
+    }
 
 
     @Override
     public Player getOwner() {
+
         return piece_owner;
     }
 
-    public String getType(){
+    public String getType() {
         return null;
     }
-
 
 
 }

@@ -6,7 +6,6 @@
 public interface Player {
 
     /**
-     *
      * @return true if the player is player 1, false otherwise.
      */
     boolean isPlayerOne();

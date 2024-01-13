@@ -16,6 +16,7 @@ public interface PlayableLogic {
      */
     boolean move(Position a, Position b);
 
+
     /**
      * Get the piece located at a given position on the game board.
      *
