@@ -3,22 +3,22 @@ public class Pawn extends ConcretePiece {
     private int eating_counter = 0;
     private String type;
 
-    private int id;
+
 
     Pawn(Player owner, int id) {
+        super(id);
         this.piece_owner = owner;
-        if (piece_owner.isPlayerOne() == true) {
-            type = "♟";
+        if (owner.isPlayerOne() == true) {
+            this.type = "♙";
         } else {
-            type = "♙";
+            this.type = "♟";
         }
 
-        this.id = id;
     }
 
     @Override
     public String getType() {
-        return type;
+        return this.type;
     }
 
 

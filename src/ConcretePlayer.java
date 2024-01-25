@@ -8,7 +8,7 @@ public class ConcretePlayer implements Player {
     }
 
     public boolean isPlayerOne() {
-        if (side == true) {
+        if (side == false) {
             return true;
         }
 
@@ -23,6 +23,7 @@ public class ConcretePlayer implements Player {
 
 
     public boolean isSide() {
+
         return side;
     }
 
