@@ -109,12 +109,195 @@ public class GameLogic implements PlayableLogic {
                 id = id + 23;
             }
             step_in_position[b.x][b.y][id - 1] = 1;
+
+            this.game_finish = isGameFinishHelper() ;
+            if (game_finish==true){
+                Arrays.sort(soldiers, new length_steps_compertor().thenComparingInt(ConcretePiece::getId));
+                if (king == false) {
+                    for (int i = 0; i < soldiers.length; i++) {
+                        if (soldiers[i].getStep_history().size() > 0) {
+                            if (soldiers[i].getOwner() == player_2) {
+                                System.out.print("A" + soldiers[i].getId() + ":" + "[");
+                                for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString());
+                                    } else {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
+                                    }
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.println("]");
+                                    }
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                    for (int i = 0; i < soldiers.length; i++) {
+                        if (soldiers[i].getStep_history().size() > 0) {
+                            if (soldiers[i].getOwner() == player_1) {
+                                System.out.print("D" + soldiers[i].getId() + ":" + "[");
+                                for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString());
+                                    } else {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
+                                    }
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.println("]");
+                                    }
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+
+                } else {
+
+
+                    for (int i = 0; i < soldiers.length; i++) {
+                        if (soldiers[i].getStep_history().size() > 0) {
+                            if (soldiers[i].getOwner() == player_1) {
+                                System.out.print("D" + soldiers[i].getId() + ":" + "[");
+                                for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString());
+                                    } else {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
+                                    }
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.println("]");
+                                    }
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                    for (int i = 0; i < soldiers.length; i++) {
+                        if (soldiers[i].getStep_history().size() > 0) {
+                            if (soldiers[i].getOwner() == player_2) {
+                                System.out.print("A" + soldiers[i].getId() + ":" + "[");
+                                for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString());
+                                    } else {
+                                        System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
+                                    }
+                                    if ((j == soldiers[i].getStep_history().size() - 1)) {
+                                        System.out.println("]");
+                                    }
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+                }
+
+                for (int i = 0; i < 75; i++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+
+
+                Comparator<ConcretePiece> primary_comparator = Comparator.comparingInt(ConcretePiece::getEdible_amount).reversed();
+                Comparator<ConcretePiece> secondary_comparator = Comparator.comparingInt(ConcretePiece::getId);
+                owner_comp third_comparator = new owner_comp();
+
+                Arrays.sort(soldiers, primary_comparator.thenComparing(secondary_comparator).thenComparing(third_comparator));
+
+                for (int i = 0; i < soldiers.length; i++) {
+                    if (soldiers[i].getEdible_amount() > 0) {
+                        if (soldiers[i].getOwner() == player_2) {
+                            System.out.print("A" + soldiers[i].getId() + ":" + " " + soldiers[i].getEdible_amount() + " " + "kills");
+                        }
+                        if (soldiers[i].getOwner() == player_1) {
+                            System.out.print("D" + soldiers[i].getId() + ":" + " " + soldiers[i].getEdible_amount() + " " + "kills");
+                        }
+                        System.out.println();
+
+                    }
+                }
+                for (int i = 0; i < 75; i++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+
+
+                Comparator<ConcretePiece> primaryComp = Comparator.comparingInt(ConcretePiece::getSquares_move).reversed();
+                Comparator<ConcretePiece> secondaryComp = Comparator.comparing(ConcretePiece::getId);
+                Arrays.sort(soldiers, primaryComp.thenComparing(secondaryComp).thenComparing(third_comparator));
+
+                for (int i = 0; i < soldiers.length; i++) {
+                    if (soldiers[i].getSquares_move() > 0) {
+
+                        if (soldiers[i].getOwner() == player_2) {
+                            System.out.println("A" + soldiers[i].getId() + ":" + soldiers[i].getSquares_move() + " " + "squares");
+                        }
+                        if (soldiers[i].getOwner() == player_1) {
+                            System.out.println("D" + soldiers[i].getId() + ":" + soldiers[i].getSquares_move() + " " + "squares");
+                        }
+
+                    }
+                }
+                for (int i = 0; i < 75; i++) {
+                    System.out.print("*");
+                }
+                System.out.println();
+
+
+                Position[] positionArrayList = new Position[121];
+                int x = 0;
+                int y = 0;
+                int track = 0;
+                for (int i = 0; i < 121; i++) {
+                    positionArrayList[i] = new Position(x, y);
+
+                    for (int j = 0; j < 37; j++) {
+                        if (step_in_position[positionArrayList[i].x][positionArrayList[i].y][j] == 1) {
+                            positionArrayList[i].setSoliders_steps();
+                        }
+                    }
+                    x++;
+                    track++;
+                    if (x > 10) {
+                        y++;
+                        x = 0;
+                    }
+
+                }
+
+
+                Comparator<Position> primaryCo = Comparator.comparingInt(Position::getSoliders_steps);
+                Comparator<Position> secondaryCo = Comparator.comparingInt(Position::getX);
+                Comparator<Position> thirdCo = Comparator.comparingInt(Position::getY);
+                Arrays.sort(positionArrayList, primaryCo.thenComparing(secondaryCo).thenComparing(thirdCo));
+
+                for (int i = 0; i < positionArrayList.length; i++) {
+                    if (positionArrayList[i].getSoliders_steps() > 0) {
+                        System.out.println("(" + positionArrayList[i].getX() + "," + " " + positionArrayList[i].getY() + ")" + positionArrayList[i].getSoliders_steps() + " " + "pieces");
+                    }
+                }
+
+            }
+
+
+
             return true;
         } else return false;
-
-        if (game_finish == true){
-
-        }
 
     }
 
@@ -203,196 +386,7 @@ public class GameLogic implements PlayableLogic {
 
     @Override
     public boolean isGameFinished() {
-        if (king == true) {
-            winner = player_1;
-        }
-        if (board[0][10] instanceof King || board[10][0] instanceof King || board[0][0] instanceof King || board[10][10] instanceof King || !king) {
-            Arrays.sort(soldiers, new length_steps_compertor().thenComparingInt(ConcretePiece::getId));
-            if (king == false) {
-                for (int i = 0; i < soldiers.length; i++) {
-                    if (soldiers[i].getStep_history().size() > 0) {
-                        if (soldiers[i].getOwner() == player_2) {
-                            System.out.print("A" + soldiers[i].getId() + ":" + "[");
-                            for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString());
-                                } else {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
-                                }
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.println("]");
-                                }
-
-                            }
-                        }
-
-
-                    }
-
-                }
-
-                for (int i = 0; i < soldiers.length; i++) {
-                    if (soldiers[i].getStep_history().size() > 0) {
-                        if (soldiers[i].getOwner() == player_1) {
-                            System.out.print("D" + soldiers[i].getId() + ":" + "[");
-                            for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString());
-                                } else {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
-                                }
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.println("]");
-                                }
-
-                            }
-                        }
-
-
-                    }
-
-                }
-
-
-            } else {
-
-
-                for (int i = 0; i < soldiers.length; i++) {
-                    if (soldiers[i].getStep_history().size() > 0) {
-                        if (soldiers[i].getOwner() == player_1) {
-                            System.out.print("D" + soldiers[i].getId() + ":" + "[");
-                            for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString());
-                                } else {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
-                                }
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.println("]");
-                                }
-
-                            }
-                        }
-
-
-                    }
-
-                }
-
-                for (int i = 0; i < soldiers.length; i++) {
-                    if (soldiers[i].getStep_history().size() > 0) {
-                        if (soldiers[i].getOwner() == player_2) {
-                            System.out.print("A" + soldiers[i].getId() + ":" + "[");
-                            for (int j = 0; j < soldiers[i].getStep_history().size(); j++) {
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString());
-                                } else {
-                                    System.out.print(soldiers[i].getStep_history().get(j).toString() + ", ");
-                                }
-                                if ((j == soldiers[i].getStep_history().size() - 1)) {
-                                    System.out.println("]");
-                                }
-
-                            }
-                        }
-
-
-                    }
-
-                }
-            }
-
-            for (int i = 0; i < 75; i++) {
-                System.out.print("*");
-            }
-            System.out.println();
-
-
-            Comparator<ConcretePiece> primary_comparator = Comparator.comparingInt(ConcretePiece::getEdible_amount).reversed();
-            Comparator<ConcretePiece> secondary_comparator = Comparator.comparingInt(ConcretePiece::getId);
-            owner_comp third_comparator = new owner_comp();
-
-            Arrays.sort(soldiers, primary_comparator.thenComparing(secondary_comparator).thenComparing(third_comparator));
-
-            for (int i = 0; i < soldiers.length; i++) {
-                if (soldiers[i].getEdible_amount() > 0) {
-                    if (soldiers[i].getOwner() == player_2) {
-                        System.out.print("A" + soldiers[i].getId() + ":" + " " + soldiers[i].getEdible_amount() + " " + "kills");
-                    }
-                    if (soldiers[i].getOwner() == player_1) {
-                        System.out.print("D" + soldiers[i].getId() + ":" + " " + soldiers[i].getEdible_amount() + " " + "kills");
-                    }
-                    System.out.println();
-
-                }
-            }
-            for (int i = 0; i < 75; i++) {
-                System.out.print("*");
-            }
-            System.out.println();
-
-
-            Comparator<ConcretePiece> primaryComp = Comparator.comparingInt(ConcretePiece::getSquares_move).reversed();
-            Comparator<ConcretePiece> secondaryComp = Comparator.comparing(ConcretePiece::getId);
-            Arrays.sort(soldiers, primaryComp.thenComparing(secondaryComp).thenComparing(third_comparator));
-
-            for (int i = 0; i < soldiers.length; i++) {
-                if (soldiers[i].getSquares_move() > 0) {
-
-                    if (soldiers[i].getOwner() == player_2) {
-                        System.out.println("A" + soldiers[i].getId() + ":" + soldiers[i].getSquares_move() + " " + "squares");
-                    }
-                    if (soldiers[i].getOwner() == player_1) {
-                        System.out.println("D" + soldiers[i].getId() + ":" + soldiers[i].getSquares_move() + " " + "squares");
-                    }
-
-                }
-            }
-            for (int i = 0; i < 75; i++) {
-                System.out.print("*");
-            }
-            System.out.println();
-
-
-            Position[] positionArrayList = new Position[121];
-            int x = 0;
-            int y = 0;
-            int track = 0;
-            for (int i = 0; i < 121; i++) {
-                positionArrayList[i] = new Position(x, y);
-
-                for (int j = 0; j < 37; j++) {
-                    if (step_in_position[positionArrayList[i].x][positionArrayList[i].y][j] == 1) {
-                        positionArrayList[i].setSoliders_steps();
-                    }
-                }
-                x++;
-                track++;
-                if (x > 10) {
-                    y++;
-                    x = 0;
-                }
-
-            }
-
-
-            Comparator<Position> primaryCo = Comparator.comparingInt(Position::getSoliders_steps);
-            Comparator<Position> secondaryCo = Comparator.comparingInt(Position::getX);
-            Comparator<Position> thirdCo = Comparator.comparingInt(Position::getY);
-            Arrays.sort(positionArrayList, primaryCo.thenComparing(secondaryCo).thenComparing(thirdCo));
-
-            for (int i = 0; i < positionArrayList.length; i++) {
-                if (positionArrayList[i].getSoliders_steps() > 0) {
-                    System.out.println("(" + positionArrayList[i].getX() + "," + " " + positionArrayList[i].getY() + ")" + positionArrayList[i].getSoliders_steps() + " " + "pieces");
-                }
-            }
-            return true;
-        }
-
-
-        return false;
-
-
+      return  isGameFinishHelper();
     }
 
 
@@ -604,6 +598,21 @@ public class GameLogic implements PlayableLogic {
         }
 
         return sum;
+    }
+
+    public boolean isGameFinishHelper(){
+        if (king == true) {
+            winner = player_1;
+        }
+        if (board[0][10] instanceof King || board[10][0] instanceof King || board[0][0] instanceof King || board[10][10] instanceof King || !king) {
+
+            return true;
+        }
+
+
+        return false;
+
+
     }
 
 }
